@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "google-ads-mcp-write"
+version = "0.1.0"
+description = "MCP server with guarded, two-step write operations for Google Ads. Companion to the official read-only googleads/google-ads-mcp."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Anderson Buzzi" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "google-ads", "model-context-protocol", "ppc"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Office/Business",
+]
+dependencies = [
+  "fastmcp>=2.10",
+  "google-auth>=2.30",
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+google-ads-mcp-write = "google_ads_mcp_write.server:main"
+
+[project.urls]
+Homepage = "https://github.com/andersonbuzzi/google-ads-mcp-write"
+Issues = "https://github.com/andersonbuzzi/google-ads-mcp-write/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/google_ads_mcp_write"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
